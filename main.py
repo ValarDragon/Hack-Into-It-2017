@@ -55,6 +55,17 @@ def register():
             return redirect('/loggedin')
     return render_template('register.html')
 
+@app.route('/organizer', methods=['GET', 'POST'])
+def register():
+    template_render = lambda local_error: render_template('register.html', error=local_error)
+    if request.method == 'POST':
+        if not ('goal_name' in request.form and 'goal_priority' in request.form):
+            return template_render('Enter your goal and how important it is to you!')
+        else:
+            session['goal_name'] = request.form['goal_name']
+            session['goal_priority'] = request.form['goal_priority']
+    return render_template('register.html')
+
 @app.route('/<path:path>')
 def send_static(path): # Give source over web - for development purposes.
     return send_from_directory('.', path)
