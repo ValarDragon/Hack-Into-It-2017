@@ -33,6 +33,7 @@ class Calculator:
 
     def money_needed(self):
 
+            #TODO change based on roshan's data
         return (1-self.income_bracket) *
             (self.max_money_needed-self.min_money_needed) + self.min_money_needed
 

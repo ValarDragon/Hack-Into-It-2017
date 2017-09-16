@@ -1,3 +1,5 @@
+from math import ceil
+
 class Goal:
 
     def __init__(self,cost,payment,percent):
@@ -7,7 +9,7 @@ class Goal:
         self.percent = percent
         self.payment = payment
         self.daily_payment = payment*percent
-        self.days = self.cost / self.daily_payment
+        self.days = ceil(self.cost / self.daily_payment)
 
     def change_payment(self, amount):
 
@@ -28,7 +30,7 @@ class Goal:
     def update(self):
 
         self.daily_payment = self.payment * self.percent
-        self.days = self.cost / self.daily_payment
+        self.days = ceil(self.cost / self.daily_payment)
 
     def is_payment_on_track(self, payment):
 
