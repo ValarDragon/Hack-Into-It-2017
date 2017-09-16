@@ -1,5 +1,7 @@
 from flask import Flask, render_template, render_template_string, abort, request, send_from_directory, session, redirect
 import numpy as np
+import hashlib
+import db.dbutils as dbutils
 
 app = Flask(__name__)
 
@@ -15,15 +17,20 @@ def logged_in():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    error = None
+    template_render = lambda local_error: render_template('login.html', error=local_error)
     if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-            error = 'Invalid Credentials. Please try again.'
+        db = dbutils.get_db()
+        if not ('username' in request.form and 'password' in request.form):
+            return template_render('Enter both the username and password.')
+        if not dbutils.user_exists(request.form['username']):
+            return template_render("That username does not exist in our system")
+        if not check_username_password(request.form['username'], request.form['password']):
+            return template_render('Invalid Credentials. Please try again.')
         else:
             session['username'] = request.form['username']
             session['logged_in'] = True
             return redirect('/loggedin')
-    return render_template('login.html', error=error)
+    return render_template('login.html')
 
 
 @app.route('/<path:path>')
