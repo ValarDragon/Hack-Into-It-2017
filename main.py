@@ -2,7 +2,6 @@ from flask import Flask, render_template, render_template_string, \
 abort, request, send_from_directory, session, redirect
 from flask_login import LoginManager, UserMixin, \
 login_required, login_user, logout_user
-import numpy as np
 import hashlib
 import db.dbutils as dbutils
 
