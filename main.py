@@ -9,8 +9,8 @@ def list_articles():
     return render_template('index.html', title='kewl game')
 
 @app.route('/loggedin')
-def show_message():
-    return render_template('show_message.html', message='YOUR LOGGED IN, ARENT YOU COOL NOW!!!', title='kewl game')
+def logged_in():
+    return render_template('logged_in.html', message='YOUR LOGGED IN, ARENT YOU COOL NOW!!!', title='kewl game')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -20,6 +20,8 @@ def login():
         if request.form['username'] != 'admin' or request.form['password'] != 'admin':
             error = 'Invalid Credentials. Please try again.'
         else:
+            session['username'] = request.form['username']
+            session['logged_in'] = True
             return redirect('/loggedin')
     return render_template('login.html', error=error)
 
