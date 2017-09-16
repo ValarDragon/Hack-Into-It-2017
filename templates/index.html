@@ -10,6 +10,14 @@
       <p>
         Welcome to our game!
       </p>
+      <h1>Sites:</h1>
+      <ul style="list-style-type:disc">
+        {% for page in pages %}
+        <li>
+          <a href="{{ page.url }}">{{ page.name }}</a>
+        </li>
+        {% endfor %}
+      </ul>
     </div>
   </body>
 </html>
