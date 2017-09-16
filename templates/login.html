@@ -1,21 +1,55 @@
 <html>
   <head>
     {% include "header.html" %}
-  </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+      .button {
+        background-color: #009688; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px; }
+    input[type=text]:focus{
+      fot-size: 24px
+      width: 100%;
+      padding: 12px 12px;
+      margin: 8px 0;
+      border: 2px solid #555; }
+      body { text-align: center;
+      }
 
+      .error { color: red; }
+    form {
+            text-align: center;}
+    </style>
+  </head>
   <body>
     <br/>
-    <div class="container container-fluid">
+    <div class="w3-container w3-teal">
       <h1>You want to login into our game eh????</h1>
-      {{error}}
+      <span class="error"> {{error}} </span>
       <p>
         Prove you have the creds.
       </p>
     </div>
-    <form method="post" action="/login" class="inline">
-      <input type="text" name="username" value="username">
-      <input type="text" name="password" value="password">
-      <button type="submit" name="submit_param"></button>
-    </form>
+
+    <form method='post' action="/login">
+  <br> <br><br>
+  <input type="text" name="username"
+  placeholder="Username" size=50 style=" height:40px;font-size:14pt;"><br>
+  <br> <br>
+  <input type="text" name="password"
+  placeholder="Password" size=50 style="height:40px;font-size:14pt;">
+
+<br> <br>
+  <button
+  class="button">Submit</button>
+  </form>
+
+
   </body>
 </html>
