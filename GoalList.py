@@ -11,14 +11,12 @@ class GoalList:
 
         self.goal_list = goal_list # this is a list
         self.goal_list_percent = goal_list_percent
-        self.goal_list.sort(key=get_percent, reverse=True)
 
     def append(self,goal):
 
         self.goal_list.append(goal)
-        self.goal_list.sort(key=get_percent, reverse=True)
 
-        self.update_percents()
+        self.update()
 
     def set_indices(self):
 
@@ -30,13 +28,13 @@ class GoalList:
 
         del self.goal_list[index]
 
-        self.update_percents()
+        self.update()
 
     def get_list(self):
 
         return self.goal_list
 
-    def update_percents(self):
+    def update(self):
 
         priority_sum = 0
         for i in range(len(self.goal_list)):
@@ -44,4 +42,6 @@ class GoalList:
 
         for i in range(len(self.goal_list)):
             self.goal_list[i].payment *= self.goal_list_percent
-            self.goal_list[i].percent = self.goal_list[i].get_priority() / [priority_sum]
+            self.goal_list[i].percent = self.goal_list[i].get_priority() / priority_sum
+
+        self.goal_list.sort(key=get_percent, reverse=True)

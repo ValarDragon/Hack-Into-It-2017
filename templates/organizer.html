@@ -10,18 +10,15 @@
         </div>
 
         <div id = "needs">
-            {% for goal in goals %}
-            <div class = "goal">
-                <p>{{goal}}</p>
-
-            </div>
-            {% endfor %}
         </div>
 
         <div id = "wants">
             {% for goal in goals %}
             <div class = "goal">
-
+                <p>{{goal.i}}.) {{goal.name}}</p>
+                <p>{{goal.priority}}</p>
+                <p>{{goal.get_days()}}</p>
+                <p></p>
             </div>
             {% endfor %}
         </div>

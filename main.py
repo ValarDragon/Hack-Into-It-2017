@@ -4,11 +4,13 @@ from flask_login import LoginManager, UserMixin, \
 login_required, login_user, logout_user
 import hashlib
 import db.dbutils as dbutils
+import Goal as gl
+import GoalList as gls
 
 app = Flask(__name__)
 
 pages = []
-goals = [0, 0, 0, 0, 0]
+goals = gls.GoalList([], -1)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -58,8 +60,8 @@ def register():
 
 @app.route('/organizer', methods=['GET', 'POST'])
 def organizer():
-    return_error = lambda local_error: render_template('organizer.html', goals=goals, error=local_error)
-    update_organizer = lambda: render_template('organizer.html', goals=goals)
+    return_error = lambda local_error: render_template('organizer.html', goals=goals.goal_list, error=local_error)
+    update_organizer = lambda: render_template('organizer.html', goals=goals.goal_list)
     if request.method == 'POST':
         if not ('goal_name' in request.form and 'goal_cost' in request.form and 'goal_priority' in request.form):
             return return_error('Enter your goal, cost, and how important it is to you!')
@@ -67,7 +69,18 @@ def organizer():
             session['goal_name'] = request.form['goal_name']
             session['goal_cost'] = request.form['goal_cost']
             session['goal_priority'] = request.form['goal_priority']
-            goals.append(session['goal_name'] + session['goal_cost'] + session['goal_priority'])
+            #Adds New Goal to Goals
+            goals.append(gl.Goal(
+                int(request.form['goal_cost']),
+                -1,
+                -1,
+                request.form['goal_name'],
+                int(request.form['goal_priority']),
+                i = None)
+            )
+            #Updates Values that need to be updated
+            goals.set_indices()
+            goals.update()
             return update_organizer()
     return render_template('organizer.html')
 
