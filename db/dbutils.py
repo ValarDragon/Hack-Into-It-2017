@@ -2,6 +2,7 @@ import sqlite3
 from flask import Flask, g
 import db.dbconf
 import hashlib
+from jinja2 import utils
 
 app = Flask(__name__)
 DATABASE = db.dbconf.database_file
@@ -38,3 +39,6 @@ def add_user(username, password):
     cursor = conn.cursor()
     cursor.execute("INSERT INTO users (username, password) VALUES (lower(?), (?))", (username, hash_func.digest()))
     conn.commit()
+
+def sanitize(username):
+    return str(utils.escape(username))

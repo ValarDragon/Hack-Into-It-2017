@@ -24,7 +24,6 @@ def list_articles():
 def logged_in():
     return render_template('logged_in.html', message='YOUR LOGGED IN, ARENT YOU COOL NOW!!!', title='kewl game')
 
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     template_render = lambda local_error: render_template('login.html', error=local_error)
@@ -40,6 +39,21 @@ def login():
             return redirect('/loggedin')
     return render_template('login.html')
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    template_render = lambda local_error: render_template('register.html', error=local_error)
+    if request.method == 'POST':
+        if not ('username' in request.form and 'password' in request.form):
+            return template_render('Enter both the username and password.')
+        if request.form['username'] != dbutils.sanitize(request.form['username']):
+            return template_render('Invalid character(s) in username')
+        else:
+            session['username'] = request.form['username']
+            dbutils.add_user(request.form['username'], request.form['password'])
+            current_user = user(request.form['username'])
+            login_user(current_user)
+            return redirect('/loggedin')
+    return render_template('register.html')
 
 @app.route('/<path:path>')
 def send_static(path): # Give source over web - for development purposes.
