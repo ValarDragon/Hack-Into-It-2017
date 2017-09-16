@@ -4,6 +4,10 @@ from Calculator import *
 class Goal:
     def __init__(self,cost,payment,percent,name,priority,i = None):
 
+        """Remember to call goalList update_percents to
+        initialize the percents and the correct
+        payment value"""
+
         self.i = i
         self.name = name
         self.priority = priority
@@ -18,6 +22,8 @@ class Goal:
 
         self.payment += amount
 
+        self.update()
+
     def change_name(self, name):
 
         self.name = name
@@ -26,9 +32,13 @@ class Goal:
 
         self.percent += amount
 
+        self.update()
+
     def change_cost(self, amount):
 
         self.cost += amount
+
+        self.update()
 
     def get_days(self):
 
@@ -39,12 +49,17 @@ class Goal:
         return self.priority
 
     def change_priority(self, priority):
-
+        """IF YOU CHANGE priority
+        PLEASE CALL GOALLIST.update_percents"""
         self.priority = priority
+
+        self.update()
 
     def change_total_cost(self, amount):
 
         self.total_cost += amount
+
+        self.update()
 
     def update(self):
 

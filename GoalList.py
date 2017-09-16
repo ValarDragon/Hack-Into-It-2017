@@ -6,11 +6,11 @@ def get_percent(goal):
 
 class GoalList:
 
-    def __init__(self, goal_list):
+    def __init__(self, goal_list, goal_list_percent):
 
 
         self.goal_list = goal_list # this is a list
-
+        self.goal_list_percent = goal_list_percent
         self.goal_list.sort(key=get_percent, reverse=True)
 
     def append(self,goal):
@@ -43,5 +43,5 @@ class GoalList:
             priority_sum += self.goal_list[i].get_priority()
 
         for i in range(len(self.goal_list)):
-
+            self.goal_list[i].payment *= self.goal_list_percent
             self.goal_list[i].percent = self.goal_list[i].get_priority() / [priority_sum]

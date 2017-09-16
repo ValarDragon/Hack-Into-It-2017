@@ -4,6 +4,7 @@ max_money_needed = 49320
 min_money_needed = 17000
 
 class Calculator:
+
     def __init__(self,amount_saved,daily_savings,days_until_grad,
         income_bracket):
         self.amount_saved = amount_saved
