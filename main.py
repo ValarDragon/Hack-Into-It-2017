@@ -6,11 +6,14 @@ import hashlib
 import db.dbutils as dbutils
 import Goal as gl
 import GoalList as gls
+import Manager as man
 
 app = Flask(__name__)
 
+manager = man.Manager(1,1,1,1)
 pages = []
-goals = gls.GoalList([], -1)
+goals = manager.WantList
+needs = manager.NeedList
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -60,8 +63,8 @@ def register():
 
 @app.route('/organizer', methods=['GET', 'POST'])
 def organizer():
-    return_error = lambda local_error: render_template('organizer.html', goals=goals.goal_list, error=local_error)
-    update_organizer = lambda: render_template('organizer.html', goals=goals.goal_list)
+    return_error = lambda local_error: render_template('organizer.html', goals=goals.goal_list, needs=needs.goal_list, error=local_error)
+    update_organizer = lambda: render_template('organizer.html',needs=needs.goal_list, goals=goals.goal_list)
     if request.method == 'POST':
         if not ('goal_name' in request.form and 'goal_cost' in request.form and 'goal_priority' in request.form):
             return return_error('Enter your goal, cost, and how important it is to you!')

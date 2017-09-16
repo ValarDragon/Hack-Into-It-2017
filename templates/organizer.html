@@ -15,11 +15,11 @@
 
         <div id = "cols">
             <div id = "needs">
-                {% for goal in goals %}
+                {% for need in needs %}
                 <div class = "goal">
-                    <p>{{goal.i}}.) {{goal.name}}</p>
-                    <p>{{goal.priority}}</p>
-                    <p>{{goal.get_days()}}</p>
+                    <p>{{need.i}}.) {{need.name}}</p>
+                    <p>{{need.priority}}</p>
+                    <p>{{need.get_days()}}</p>
                     <p></p>
                 </div>
                 {% endfor %}
