@@ -8,8 +8,24 @@ app = Flask(__name__)
 def list_articles():
     return render_template('index.html', title='kewl game')
 
+@app.route('/loggedin')
+def show_message():
+    return render_template('show_message.html', message='YOUR LOGGED IN, ARENT YOU COOL NOW!!!', title='kewl game')
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+            error = 'Invalid Credentials. Please try again.'
+        else:
+            return redirect('/loggedin')
+    return render_template('login.html', error=error)
+
+
 @app.route('/<path:path>')
-def send_static(path):
+def send_static(path): # Give source over web - for development purposes.
     return send_from_directory('.', path)
 
 @app.errorhandler(404)
@@ -18,5 +34,8 @@ def error_404(error):
 
 if __name__ == '__main__':
     #Not really sure what the secret key is for, but I need it to set a session var.
-    app.secret_key = 'superdupercoolkey'
+    import random
+    x = str(random.getrandbits(100))
+    print('superdupercoolkey-' + x)
+    app.secret_key = 'superdupercoolkey-' + x
     app.run(threaded=True, debug=True)
