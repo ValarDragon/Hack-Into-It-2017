@@ -3,35 +3,34 @@
     </head>
     <body>
         <div id = "projected_daily_rate">
-
+            {{error}}
         </div>
 
         <div id = "daily_saved">
         </div>
 
         <div id = "needs">
-            {% for s in S %}
+            {% for goal in goals %}
             <div class = "goal">
-                <span>{{S.index(s)}}</span>   #number
-                <span>{{s.name}}</span>   #goalName
-                <span>{{s.priority}}</span>   #priority
+                <p>{{goal}}</p>
+
             </div>
             {% endfor %}
         </div>
 
         <div id = "wants">
-            {% for s in S %}
+            {% for goal in goals %}
             <div class = "goal">
-                <span>{{S.index(s)}}</span>   #number
-                <span>{{s.name}}</span>   #goalName
-                <span>{{s.priority}}</span>   #priority
+
             </div>
             {% endfor %}
+        </div>
         </br>
 
         <div>
-            <form>
+            <form method='post' action="/organizer">
                 <input type="text" name="goal_name" placeholder="Your Goal's name!">
+                <input type="text" name="goal_cost" placeholder="Your Money!">
                 <input type="text" name="goal_priority" placeholder="Your Goal's priority!">
                 <input type="submit" value="Submit">
             </form>
