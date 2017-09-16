@@ -1,0 +1,21 @@
+<html>
+  <head>
+    {% include "header.html" %}
+  </head>
+
+  <body>
+    <br/>
+    <div class="container container-fluid">
+      <h1>You want to login into our game eh????</h1>
+      {{error}}
+      <p>
+        Prove you have the creds.
+      </p>
+    </div>
+    <form method="post" action="/login" class="inline">
+      <input type="text" name="username" value="username">
+      <input type="text" name="password" value="password">
+      <button type="submit" name="submit_param"></button>
+    </form>
+  </body>
+</html>
