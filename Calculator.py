@@ -1,6 +1,11 @@
+
+""" Data from college board 2016 - 2017 """
+max_money_needed = 49320
+min_money_needed = 17000
+
 class Calculator:
     def __init__(self,amount_saved,daily_savings,days_until_grad,
-        income_bracket,max_money_needed,min_money_needed):
+        income_bracket):
         self.amount_saved = amount_saved
         self.daily_savings = daily_savings
         self.days_until_grad = days_until_grad
@@ -30,9 +35,14 @@ class Calculator:
 
     def money_needed(self):
 
-            #TODO change based on roshan's data
-        return (1-self.income_bracket) * (self.max_money_needed-self.min_money_needed) + self.min_money_needed
+        if self.income_bracket == 1.0:
+
+            return self.max_money_needed
+        elif self.income_bracket == 0.5:
+            return (self.min_money_needed + self.max_money_needed)/2
+        else:
+            return self.min_money_needed
 
     def calculate_need_percent(self):
 
-        return self.possible_savings()/self.money_needed()
+        return self.money_needed()/self.possible_savings()
