@@ -15,3 +15,9 @@ class Manager:
 
         self.WantList = GoalList([],
             1 - self.User.calculate_need_percent())
+
+    def update(self):
+
+
+        self.NeedList.goal_list_percent = self.User.calculate_need_percent()
+        self.WantList.goal_list_percent = 1 - self.User.calculate_need_percent()
