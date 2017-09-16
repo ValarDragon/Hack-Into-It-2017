@@ -1,36 +1,47 @@
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="templates/organizersheet.css">
     </head>
     <body>
-        <div id = "projected_daily_rate">
+        <div id = "title">
             {{error}}
         </div>
 
-        <div id = "daily_saved">
-        </div>
-
-        <div id = "needs">
-        </div>
-
-        <div id = "wants">
-            {% for goal in goals %}
-            <div class = "goal">
-                <p>{{goal.i}}.) {{goal.name}}</p>
-                <p>{{goal.priority}}</p>
-                <p>{{goal.get_days()}}</p>
-                <p></p>
-            </div>
-            {% endfor %}
-        </div>
-        </br>
-
-        <div>
+        <div id = "saved_today">
             <form method='post' action="/organizer">
-                <input type="text" name="goal_name" placeholder="Your Goal's name!">
-                <input type="text" name="goal_cost" placeholder="Your Money!">
-                <input type="text" name="goal_priority" placeholder="Your Goal's priority!">
-                <input type="submit" value="Submit">
+                <input type="text" name="saved" placeholder="">
             </form>
+        </div>
+
+        <div id = "cols">
+            <div id = "needs">
+                {% for goal in goals %}
+                <div class = "goal">
+                    <p>{{goal.i}}.) {{goal.name}}</p>
+                    <p>{{goal.priority}}</p>
+                    <p>{{goal.get_days()}}</p>
+                    <p></p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div id = "wants">
+                {% for goal in goals %}
+                <div class = "goal">
+                    <p>{{goal.i}}.) {{goal.name}}</p>
+                    <p>{{goal.priority}}</p>
+                    <p>{{goal.get_days()}}</p>
+                    <p></p>
+                </div>
+                {% endfor %}
+                <hr>
+                <form method='post' action="/organizer">
+                    <input type="text" name="goal_name" placeholder="Your Goal's name!">
+                    <input type="text" name="goal_cost" placeholder="Your Money!">
+                    <input type="text" name="goal_priority" placeholder="Your Goal's priority!">
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
         </div>
 
     </body>

@@ -1,3 +1,7 @@
+body {
+    background-color: #5FFFFF;
+}
+
 .button {
     float: right;
     background-color: #4CAF50;
@@ -24,10 +28,6 @@ input[type=text]:focus {
     padding: 12px 12px;
     margin: 8px 0;
     border: 2px solid #555;
-}
-
-body {
-    text-align: center;
 }
 
 .error {

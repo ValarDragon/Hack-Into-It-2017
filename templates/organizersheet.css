@@ -1,0 +1,55 @@
+/*CLEARFIX HACK*/
+
+.cf:before, .cf:after {
+
+    content: " ";
+    display: table;
+
+}
+
+.cf:after {
+
+    clear: both;
+
+}
+.cf {
+    *zoom: 1;
+}
+
+* {
+
+}
+
+body {
+}
+
+#title {
+    background-color: black;
+}
+
+#saved_today {
+    background-color: white;
+}
+
+#cols {
+    margin: 2%, 10%, 2%, 5%;
+}
+
+#needs {
+    position: relative;
+    float: left;
+    padding: 0% 0% 0% 0%;
+    width: 45%;
+    border-style: dash
+    ed;
+    border-width: 2px;
+}
+
+#wants {
+    position: relative;
+    float: right;
+    padding: 0% 0% 0% 0%;
+    width: 45%;
+    border-style: dashed;
+    border-width: 2px;
+}
