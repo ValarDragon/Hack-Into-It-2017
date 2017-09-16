@@ -1,9 +1,6 @@
-
 class Calculator:
-
     def __init__(self,amount_saved,daily_savings,days_until_grad,
         income_bracket,max_money_needed,min_money_needed):
-
         self.amount_saved = amount_saved
         self.daily_savings = daily_savings
         self.days_until_grad = days_until_grad
@@ -34,8 +31,7 @@ class Calculator:
     def money_needed(self):
 
             #TODO change based on roshan's data
-        return (1-self.income_bracket) *
-            (self.max_money_needed-self.min_money_needed) + self.min_money_needed
+        return (1-self.income_bracket) * (self.max_money_needed-self.min_money_needed) + self.min_money_needed
 
     def calculate_need_percent(self):
 
