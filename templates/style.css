@@ -1,0 +1,39 @@
+.button {
+    float: right;
+    background-color: #4CAF50;
+    right: 0px;
+    border: none;
+    color: white;
+    padding: 10px 12px 10px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 50%;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.button:hover {
+    background-color: #FFFFFF;
+    color: black;
+}
+
+input[type=text]:focus {
+    font-size: 10px
+    width: 100%;
+    padding: 12px 12px;
+    margin: 8px 0;
+    border: 2px solid #555;
+}
+
+body {
+    text-align: center;
+}
+
+.error {
+    color: red;
+}
+
+form {
+    text-align: center;
+}
