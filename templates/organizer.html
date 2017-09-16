@@ -1,0 +1,41 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <div id = "projected_daily_rate">
+
+        </div>
+
+        <div id = "daily_saved">
+        </div>
+
+        <div id = "needs">
+            {% for s in S %}
+            <div class = "goal">
+                <span>{{S.index(s)}}</span>   #number
+                <span>{{s.name}}</span>   #goalName
+                <span>{{s.priority}}</span>   #priority
+            </div>
+            {% endfor %}
+        </div>
+
+        <div id = "wants">
+            {% for s in S %}
+            <div class = "goal">
+                <span>{{S.index(s)}}</span>   #number
+                <span>{{s.name}}</span>   #goalName
+                <span>{{s.priority}}</span>   #priority
+            </div>
+            {% endfor %}
+        </br>
+
+        <div>
+            <form>
+                <input type="text" name="goal_name" placeholder="Your Goal's name!">
+                <input type="text" name="goal_priority" placeholder="Your Goal's priority!">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+    </body>
+</html>
