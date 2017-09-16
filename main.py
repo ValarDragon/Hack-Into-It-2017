@@ -8,6 +8,7 @@ import db.dbutils as dbutils
 app = Flask(__name__)
 
 pages = []
+goals = [0, 0, 0, 0, 0]
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -56,15 +57,19 @@ def register():
     return render_template('register.html')
 
 @app.route('/organizer', methods=['GET', 'POST'])
-def register():
-    template_render = lambda local_error: render_template('register.html', error=local_error)
+def organizer():
+    return_error = lambda local_error: render_template('organizer.html', goals=goals, error=local_error)
+    update_organizer = lambda: render_template('organizer.html', goals=goals)
     if request.method == 'POST':
-        if not ('goal_name' in request.form and 'goal_priority' in request.form):
-            return template_render('Enter your goal and how important it is to you!')
+        if not ('goal_name' in request.form and 'goal_cost' in request.form and 'goal_priority' in request.form):
+            return return_error('Enter your goal, cost, and how important it is to you!')
         else:
             session['goal_name'] = request.form['goal_name']
+            session['goal_cost'] = request.form['goal_cost']
             session['goal_priority'] = request.form['goal_priority']
-    return render_template('register.html')
+            goals.append(session['goal_name'] + session['goal_cost'] + session['goal_priority'])
+            return update_organizer()
+    return render_template('organizer.html')
 
 @app.route('/<path:path>')
 def send_static(path): # Give source over web - for development purposes.
