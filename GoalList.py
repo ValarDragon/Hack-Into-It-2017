@@ -24,6 +24,12 @@ class GoalList:
 
             self.goal_list[i].i = i
 
+    def make_payment(self,amount):
+
+        for i in range(len(self.goal_list)):
+            percent = self.goal_list[i].get_percent()
+            self.goal_list[i].change_cost(amount * goal_list_percent * percent)
+
     def remove(self,index):
 
         del self.goal_list[index]
