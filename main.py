@@ -19,12 +19,11 @@ def logged_in():
 def login():
     template_render = lambda local_error: render_template('login.html', error=local_error)
     if request.method == 'POST':
-        db = dbutils.get_db()
         if not ('username' in request.form and 'password' in request.form):
             return template_render('Enter both the username and password.')
-        if not dbutils.user_exists(request.form['username']):
-            return template_render("That username does not exist in our system")
-        if not check_username_password(request.form['username'], request.form['password']):
+        # if not dbutils.user_exists(request.form['username']):
+        #     return template_render("That username does not exist in our system")
+        if not dbutils.check_username_password(request.form['username'], request.form['password']):
             return template_render('Invalid Credentials. Please try again.')
         else:
             session['username'] = request.form['username']

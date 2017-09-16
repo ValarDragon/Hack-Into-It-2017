@@ -24,8 +24,17 @@ def user_exists(username):
     return cursor.fetchone()[0] != 0
 
 def check_username_password(username,password):
-    if not user_exists(username):
-        return False
+    hash_func = hashlib.new("sha256")
+    hash_func.update(bytes(password, 'utf-8'))
+    password = hash_func.digest()
     cursor = get_db().cursor()
     cursor.execute("SELECT count(*) FROM users WHERE username=lower((?)) AND password=(?)",(username, password))
     return cursor.fetchone()[0] != 0
+
+def add_user(username, password):
+    hash_func = hashlib.new("sha256")
+    hash_func.update(bytes(password, 'utf-8'))
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO users (username, password) VALUES (lower(?), (?))", (username, hash_func.digest()))
+    conn.commit()
