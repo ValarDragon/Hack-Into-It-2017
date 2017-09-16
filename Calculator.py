@@ -1,3 +1,4 @@
+from random import randint
 
 """ Data from college board 2016 - 2017 """
 max_money_needed = 49320
@@ -37,12 +38,11 @@ class Calculator:
     def money_needed(self):
 
         if self.income_bracket == 1.0:
-
-            return self.max_money_needed
+            return self.min_money_needed
         elif self.income_bracket == 0.5:
             return (self.min_money_needed + self.max_money_needed)/2
         else:
-            return self.min_money_needed
+            return self.max_money_needed
 
     def calculate_need_percent(self):
 
