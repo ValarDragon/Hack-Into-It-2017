@@ -8,7 +8,11 @@ class GoalList:
 
     def __init__(self, goal_list):
 
+<<<<<<< HEAD
+        self.goal_list = goal_list
+=======
         self.goal_list = goal_list # this is a list
+>>>>>>> 6dcd024c0057ce899fb6b9d4e4359874af08451f
         self.goal_list.sort(key=get_percent, reverse=True)
 
     def append(self,goal):
